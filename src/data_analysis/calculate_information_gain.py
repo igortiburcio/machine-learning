@@ -8,16 +8,6 @@ def load_csv(path: str) -> tuple[list[dict[str, str]], list[str], str]:
         headers = list(rows[0].keys())
     return rows, headers[:-1], headers[-1]
 
-def start() -> None:
-    data, attributes, target = load_csv("data/risco_credito.csv")
-
-    initial_entropy = calculate_entropy(data, target)
-    print(f"Entropia inicial: {initial_entropy:.4f}")
-
-    for attr in attributes:
-        gain = calculate_information_gain(data, attr, target)
-        print(f"Ganho de informação ({attr}): {gain:.4f}")
-
 def calculate_entropy(data: list[dict[str, any]], target: str) -> float:
     targets = [row[target] for row in data]
     total = len(targets)
@@ -49,3 +39,13 @@ def calculate_information_gain(data: list[dict[str, any]], attribute: str, targe
         gain += weight * subset_entropy
 
     return  initial_entropy - gain
+
+def start() -> None:
+    data, attributes, target = load_csv("data/risco_credito.csv")
+
+    initial_entropy = calculate_entropy(data, target)
+    print(f"Entropia inicial: {initial_entropy:.4f}")
+
+    for attr in attributes:
+        gain = calculate_information_gain(data, attr, target)
+        print(f"Ganho de informação ({attr}): {gain:.4f}")
