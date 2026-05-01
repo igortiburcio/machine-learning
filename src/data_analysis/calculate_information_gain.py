@@ -18,7 +18,7 @@ def start() -> None:
         gain = calculate_information_gain(data, attr, target)
         print(f"Ganho de informação ({attr}): {gain:.4f}")
 
-def calculate_entropy(data: list, target: str) -> float:
+def calculate_entropy(data: list[dict[str, any]], target: str) -> float:
     targets = [row[target] for row in data]
     total = len(targets)
 
@@ -36,7 +36,7 @@ def calculate_entropy(data: list, target: str) -> float:
 
     return entropy
 
-def calculate_information_gain(data: list, attribute: str, target: str) -> float:
+def calculate_information_gain(data: list[dict[str, any]], attribute: str, target: str) -> float:
     values = set(row[attribute] for row in data)
     subsets = [[row for row in data if row[attribute] == val] for val in values]
     initial_entropy = calculate_entropy(data, target)
