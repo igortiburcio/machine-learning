@@ -31,14 +31,14 @@ def calculate_information_gain(data: list[dict[str, any]], attribute: str, targe
     subsets = [[row for row in data if row[attribute] == val] for val in values]
     initial_entropy = calculate_entropy(data, target)
 
-    gain = 0
+    weighted_entropy = 0
 
     for subset in subsets:
         subset_entropy = calculate_entropy(subset, target)
         weight = len(subset) / len(data)
-        gain += weight * subset_entropy
+        weighted_entropy += weight * subset_entropy
 
-    return  initial_entropy - gain
+    return  initial_entropy - weighted_entropy
 
 def start() -> None:
     data, attributes, target = load_csv("data/risco_credito.csv")
