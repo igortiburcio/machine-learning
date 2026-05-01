@@ -1,0 +1,45 @@
+[project]
+name = "data-analysis"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "Igor Tiburcio Cavalcanti", email = "igor.tiburcio@juridico.ai" },
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.3.2,<3.0.0",
+    "pandas>=2.3.1,<3.0.0",
+    "matplotlib>=3.10.5,<4.0.0",
+    "seaborn>=0.13.2,<0.14.0",
+    "plotly>=5.22.0,<6.0.0",
+    "scikit-learn>=1.7.1,<2.0.0",
+    "pyotp>=2.9.0,<3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.17.1,<2.0.0",
+    "black>=25.1.0,<26.0.0",
+    "flake8>=7.3.0,<8.0.0",
+    "pandas-stubs>=2.2.2.241218",
+    "matplotlib-stubs>=0.3.11,<0.4.0",
+    "types-setuptools>=80.9.0.20251223",
+]
+
+[project.scripts]
+start = "data_analysis.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/data_analysis"]
+
+[tool.windsurfpyright]
+typeCheckingMode = "basic"
+reportUnknownMemberType = false
+
+[tool.black]
+line-length = 120
